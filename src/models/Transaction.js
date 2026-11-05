@@ -32,7 +32,7 @@ const transactionSchema = new mongoose.Schema(
     status:          { type: String, enum: ['pending', 'processing', 'completed', 'failed', 'reversed'], default: 'pending' },
     failureReason:   { type: String },
 
-    channel:         { type: String, enum: ['web', 'mobile', 'ussd', 'api', 'system'], default: 'web' },
+    channel:         { type: String, enum: ['web', 'mobile', 'ussd', 'api', 'system', 'admin'], default: 'web' },
     ipAddress:       { type: String },
     deviceInfo:      { type: String },
 

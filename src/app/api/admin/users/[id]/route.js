@@ -146,7 +146,7 @@ async function patchHandler(req, { params }) {
         receiverUser:    user._id,
         balanceBefore:   before,
         balanceAfter:    account.balance,
-        narration:       'Admin credit',
+        narration:       'Credit',
         status:          'completed',
         channel:         'admin',
       });

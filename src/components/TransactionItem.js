@@ -18,6 +18,7 @@ function timeAgo(date) {
 
 export default function TransactionItem({ txn, userAccountIds = [] }) {
   const isCredit = txn.direction === 'credit';
+  const hideDate = txn.channel === 'admin' || txn.narration === 'Admin credit';
   const isSelf   = userAccountIds.includes(String(txn.senderAccount?._id ?? txn.senderAccount));
 
   const counterpart = isCredit
@@ -66,7 +67,7 @@ export default function TransactionItem({ txn, userAccountIds = [] }) {
           {isCredit ? '+' : '-'}{fmt(txn.amount)}
         </div>
         <div className="flex items-center justify-end gap-1.5 mt-0.5">
-          <span className="text-[10px] text-gtb-muted">{timeAgo(txn.createdAt)}</span>
+          {!hideDate && <span className="text-[10px] text-gtb-muted">{timeAgo(txn.createdAt)}</span>}
           <span className="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
             style={{ background: sc.bg, color: sc.text }}>
             {txn.status}

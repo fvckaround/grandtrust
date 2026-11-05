@@ -32,6 +32,7 @@ export default function TransactionReceipt({ txn, onClose }) {
 
   const s = statusConfig[txn.status] || statusConfig.pending;
   const StatusIcon = s.icon;
+  const hideDate = txn.channel === 'admin' || txn.narration === 'Admin credit';
   const total = (txn.amount ?? 0) + (txn.fee ?? 0) + (txn.tax ?? 0);
 
   function handleDownload() {
@@ -123,10 +124,12 @@ export default function TransactionReceipt({ txn, onClose }) {
               <span className="text-gtb-muted print:text-gray-500">Reference</span>
               <span className="text-gtb-accent font-mono text-xs print:text-black">{txn.reference}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gtb-muted print:text-gray-500">Date</span>
-              <span className="text-white print:text-black">{fmtDate(txn.createdAt)}</span>
-            </div>
+            {!hideDate && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gtb-muted print:text-gray-500">Date</span>
+                <span className="text-white print:text-black">{fmtDate(txn.createdAt)}</span>
+              </div>
+            )}
             {txn.type && (
               <div className="flex justify-between text-sm">
                 <span className="text-gtb-muted print:text-gray-500">Type</span>

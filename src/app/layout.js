@@ -16,23 +16,18 @@ export default function RootLayout({ children }) {
       <body className="min-h-full antialiased bg-gtb-dark text-white">
         {children}
 
-        {process.env.NEXT_PUBLIC_TAWKTO_PROPERTY_ID && (
-          <Script id="tawkto-widget" strategy="afterInteractive">
-            {`
-              var Tawk_API = Tawk_API || {};
-              var Tawk_LoadStart = new Date();
-              (function () {
-                var s1 = document.createElement("script");
-                var s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/${process.env.NEXT_PUBLIC_TAWKTO_PROPERTY_ID}/${process.env.NEXT_PUBLIC_TAWKTO_WIDGET_ID}';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin', '*');
-                s0.parentNode.insertBefore(s1, s0);
-              })();
-            `}
-          </Script>
-        )}
+        <Script id="smartsupp-widget" strategy="afterInteractive">
+          {`
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '602040c4dea58f3ba90901b7e5c3ef223af18775';
+            window.smartsupp||(function(d) {
+              var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+              s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+              c.type='text/javascript';c.charset='utf-8';c.async=true;
+              c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+            })(document);
+          `}
+        </Script>
       </body>
     </html>
   );
